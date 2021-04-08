@@ -30,10 +30,12 @@ int main(int argc, char const *argv[])
 
     if (connect(s, (struct sockaddr *)&ss, sizeof(struct sockaddr_in)) == -1) handle_error("connect");
 
-    for (int x = 0; x < 5; x++) {
-        write(s, argv[3], 1);
+    for (int x = 0; x < 2; x++) {
+        send(s, argv[3], 10, 0);
         sleep(atoi(argv[3]));
     }
+
+    send(s, "-1", 10, 0);
 
     close(s);
     
